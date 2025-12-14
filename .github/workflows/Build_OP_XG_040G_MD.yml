@@ -15,7 +15,7 @@ on:
 
 env:
   CONFIG_FILE: 'config/XG_040G_MD.config'
-  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_URL: https://github.com/unless/lede
   REPO_BRANCH: master
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -98,6 +98,7 @@ jobs:
       id: compile
       run: |
         cd openwrt/
+        make defconfig
         if [[ "${{ inputs.log_switch }}" == "true" ]]; then
             make -j1 V=s
         else
