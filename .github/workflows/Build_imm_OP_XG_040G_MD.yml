@@ -64,23 +64,23 @@ jobs:
         git clone --depth 1 https://github.com/rchen14b/luci-app-airoha-npu luci-app-airoha-npu
         # cd openwrt
         # echo 'src-git modem https://github.com/FUjr/QModem.git;main' >> feeds.conf.default
-        echo "status=success" >> ${GITHUB_OUTPUT}
-        
-    - name: Free up disk space
-      run: |
         sudo mkdir -p /mnt/openwrt/{dl,staging_dir,build_dir}
         sudo chown -R $USER:$GROUPS /mnt/openwrt
-        ln -sfn /mnt/openwrt/dl openwrt/dl
-        ln -sfn /mnt/openwrt/staging_dir openwrt/staging_dir
-        ln -sfn /mnt/openwrt/build_dir openwrt/build_dir
-        df -H
-
+        echo "status=success" >> ${GITHUB_OUTPUT}
+        
     - name: 缓存构建动作
       uses: klever1988/cachewrtbuild@main
       with:
         ccache: 'true'
         mixkey: imm_XG_040G_MD-${{ env.REPO_BRANCH }}
         prefix: ./openwrt
+        
+    - name: Free up disk space
+      run: |
+        ln -sfn /mnt/openwrt/dl openwrt/dl
+        ln -sfn /mnt/openwrt/staging_dir openwrt/staging_dir
+        ln -sfn /mnt/openwrt/build_dir openwrt/build_dir
+        df -H
         
     - name: Update & Install feeds
       working-directory: ./openwrt
