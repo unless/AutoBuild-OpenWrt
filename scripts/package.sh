@@ -1,5 +1,6 @@
 #!/bin/bash
 #安装和更新软件包
+cd package
 UPDATE_PACKAGE() {
 	local PKG_NAME=$1
 	local PKG_REPO=$2
@@ -45,4 +46,3 @@ UPDATE_PACKAGE "easytier" "EasyTier/luci-app-easytier" "main"
 UPDATE_PACKAGE "daed" "qiuSimons/luci-app-daed" "master" "" "daed luci-app-daed"
 UPDATE_PACKAGE "v2ray-geodata" "unless/v2ray-geodata" "master"
 UPDATE_PACKAGE "taskplan" "sirpdboy/luci-app-taskplan" "master"
-UPDATE_PACKAGE "airoha-npu" "unless/luci-app-airoha-npu" "master"
