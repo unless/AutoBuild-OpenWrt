@@ -131,7 +131,7 @@ jobs:
       run: |
         echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
         cat <<EOF > release.txt
-        🚀 OpenWrt firmware for XG_040G_MD
+        🚀 OpenWrt firmware for imm_XG_040G_MD
         ----------------------
         设备: XG-040G-MD
         时间: $(date +"%Y-%m-%d %H:%M")
