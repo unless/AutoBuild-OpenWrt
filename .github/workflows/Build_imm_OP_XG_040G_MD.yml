@@ -84,7 +84,7 @@ jobs:
 
     - name: Configuration Customization
       run: |
-        chmod +x ./scripts/customize.sh && ./scripts/customize.sh
+        chmod +x ./scripts/imm-customize.sh && ./scripts/imm-customize.sh
         [[ -d "files" ]] && mv -f files openwrt/files
         cp -fv "${CONFIG_FILE}" openwrt/.config
         
