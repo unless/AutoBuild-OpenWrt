@@ -79,7 +79,7 @@ jobs:
       uses: klever1988/cachewrtbuild@main
       with:
         ccache: 'true'
-        mixkey: imm_XG_040G_MD-${{ REPO_BRANCH }}
+        mixkey: imm_XG_040G_MD-${{ env.REPO_BRANCH }}
         prefix: ./openwrt
         
     - name: Update & Install feeds
