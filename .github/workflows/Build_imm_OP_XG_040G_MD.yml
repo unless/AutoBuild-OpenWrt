@@ -1,4 +1,4 @@
-name: Build_XG_040G_MD
+name: Build_imm_XG_040G_MD
 
 on: 
   repository_dispatch:
