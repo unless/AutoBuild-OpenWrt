@@ -61,6 +61,7 @@ jobs:
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         git clone --depth 1 https://github.com/vernesong/OpenClash.git OpenClash
+        git clone --depth 1 https://github.com/rchen14b/luci-app-airoha-npu luci-app-airoha-npu
         # cd openwrt
         # echo 'src-git modem https://github.com/FUjr/QModem.git;main' >> feeds.conf.default
         echo "status=success" >> ${GITHUB_OUTPUT}
@@ -74,17 +75,26 @@ jobs:
         ln -sfn /mnt/openwrt/build_dir openwrt/build_dir
         df -H
 
+    - name: 缓存构建动作
+      uses: klever1988/cachewrtbuild@main
+      with:
+        ccache: 'true'
+        mixkey: imm_XG_040G_MD-${{ REPO_BRANCH }}
+        prefix: ./openwrt
+        
     - name: Update & Install feeds
       working-directory: ./openwrt
       run: |
         ./scripts/feeds update -a
         rm -rf feeds/luci/applications/luci-app-openclash
         cp -r ../OpenClash/luci-app-openclash feeds/luci/applications/
-        ./scripts/feeds install -a -f
-
+        cp -r ../luci-app-airoha-npu feeds/luci/applications/
+        ./scripts/feeds install -a -f  
+       
     - name: Configuration Customization
       run: |
         chmod +x ./scripts/imm-customize.sh && ./scripts/imm-customize.sh
+        chmod +x ./scripts/package.sh && ./scripts/package.sh
         [[ -d "files" ]] && mv -f files openwrt/files
         cp -fv "${CONFIG_FILE}" openwrt/.config
         
