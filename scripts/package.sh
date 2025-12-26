@@ -1,6 +1,6 @@
 #!/bin/bash
 #安装和更新软件包
-cd package
+cd openwrt/package
 UPDATE_PACKAGE() {
 	local PKG_NAME=$1
 	local PKG_REPO=$2
