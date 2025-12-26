@@ -102,7 +102,7 @@ jobs:
         if [[ "${{ inputs.log_switch }}" == "true" ]]; then
             make -j1 V=s
         else
-            make -j$(nproc)
+            make -j$(nproc) || make -j1 V=s
         fi
         grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
@@ -135,7 +135,7 @@ jobs:
         ----------------------
         设备: XG-040G-MD
         时间: $(date +"%Y-%m-%d %H:%M")
-        内核版本: 6.6.X
+        内核版本: 6.12.X
         源码仓库: $REPO_URL
         分支: $REPO_BRANCH
         EOF
