@@ -14,7 +14,7 @@ on:
           - false
 
 env:
-  CONFIG_FILE: 'config/XG_040G_MD.config'
+  CONFIG_FILE: 'config/imm_XG_040G_MD.config'
   REPO_URL: https://github.com/unless/immortalwrt
   REPO_BRANCH: openwrt-25.12
   UPLOAD_FIRMWARE: true
