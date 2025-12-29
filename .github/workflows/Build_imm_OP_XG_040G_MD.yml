@@ -86,6 +86,8 @@ jobs:
        
     - name: Configuration Customization
       run: |
+        echo "WRT_DATE=$(TZ=UTC-8 date +"%y.%m.%d-%H.%M.%S")" >> $GITHUB_ENV
+        echo "WRT_MARK=${GITHUB_REPOSITORY%%/*}" >> $GITHUB_ENV
         chmod +x ./scripts/imm-customize.sh && ./scripts/imm-customize.sh
         chmod +x ./scripts/package.sh && ./scripts/package.sh
         [[ -d "files" ]] && mv -f files openwrt/files
