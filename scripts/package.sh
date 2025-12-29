@@ -1,11 +1,11 @@
 #!/bin/bash
 #安装和更新软件包
 #移除luci-app-attendedsysupgrade
-sed -i "/attendedsysupgrade/d" $(find ./feeds/luci/collections/ -type f -name "Makefile")
+sed -i "/attendedsysupgrade/d" $(find ./openwrt/feeds/luci/collections/ -type f -name "Makefile")
 #修改默认主题
-sed -i "s/luci-theme-bootstrap/luci-theme-argon/g" $(find ./feeds/luci/collections/ -type f -name "Makefile")
+sed -i "s/luci-theme-bootstrap/luci-theme-argon/g" $(find ./openwrt/feeds/luci/collections/ -type f -name "Makefile")
 #添加编译日期标识
-sed -i "s/(\(luciversion || ''\))/(\1) + (' \/ $WRT_MARK-$WRT_DATE')/g" $(find ./feeds/luci/modules/luci-mod-status/ -type f -name "10_system.js")
+sed -i "s/(\(luciversion || ''\))/(\1) + (' \/ $WRT_MARK-$WRT_DATE')/g" $(find ./openwrt/feeds/luci/modules/luci-mod-status/ -type f -name "10_system.js")
 
 cd openwrt/package
 UPDATE_PACKAGE() {
